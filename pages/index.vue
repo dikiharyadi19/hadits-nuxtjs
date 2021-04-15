@@ -20,6 +20,7 @@
         >
           GitHub
         </a>
+        <NuxtLink to="/about"> link to about </NuxtLink>
       </div>
     </div>
   </div>
