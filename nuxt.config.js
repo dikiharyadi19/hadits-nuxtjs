@@ -1,3 +1,4 @@
+const path = require('path') // Don't forget to add path lib
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -15,7 +16,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~assets/styles/tailwind.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -27,6 +28,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -53,5 +55,16 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+        'postcss-nested': {},
+      },
+    },
+    preset: {
+      stage: 1, // see https://tailwindcss.com/docs/using-with-preprocessors#future-css-featuress
+    },
+  },
 }
